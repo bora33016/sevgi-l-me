@@ -1,43 +1,163 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Aşk Kutusu</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(90deg, #ffd1dc 50%, #a0e7e5 50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  h1 {
-    color: #e91e63;
-  }
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 40px;
-    margin-top: 30px;
-  }
-  .input-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  label {
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-  input[type="text"] {
-    padding: 8px;
-    font-size: 16px;
-    width: 160px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-  }
-  button {
-    m
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aşk Kutusu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(90deg, #ffd1dc 50%, #a0e7e5 50%);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: #e91e63;
+      margin-top: 20px;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      margin-top: 30px;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    input[type="text"] {
+      padding: 8px;
+      font-size: 16px;
+      width: 160px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 10px;
+      background-color: #ff69b4;
+      border: none;
+      padding: 8px 20px;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e91e63;
+    }
+    .hourglass-container {
+      position: relative;
+      width: 120px;
+      height: 220px;
+      border: 3px solid #e91e63;
+      border-radius: 20px;
+      background: rgba(255, 192, 203, 0.2);
+      overflow: hidden;
+    }
+    .sand {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: repeating-linear-gradient(
+        45deg,
+        #e91e63,
+        #e91e63 10px,
+        #ffb6c1 10px,
+        #ffb6c1 20px
+      );
+      animation: wave 2s ease-in-out infinite;
+      border-radius: 0 0 20px 20px;
+      clip-path: polygon(20% 100%, 80% 100%, 50% 50%, 20% 100%);
+    }
+    @keyframes wave {
+      0%, 100% { background-position: 0 0; }
+      50% { background-position: 40px 0; }
+    }
+    #message {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #e91e63;
+      min-height: 28px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>💖 Aşk Kutusu 💖</h1>
+  <p>İsim girin, aşk kutusu dolsun!</p>
+  <div class="container">
+    <div class="input-group">
+      <label for="girlName">Kız</label>
+      <input type="text" id="girlName" placeholder="İsim girin" />
+      <button onclick="addName('girl')">Gönder</button>
+    </div>
+    <div class="hourglass-container">
+      <div id="sand" class="sand" style="height: 0%;"></div>
+    </div>
+    <div class="input-group">
+      <label for="boyName">Erkek</label>
+      <input type="text" id="boyName" placeholder="İsim girin" />
+      <button onclick="addName('boy')">Gönder</button>
+    </div>
+  </div>
+  <div id="message"></div>
+
+  <script>
+    let girlCount = 0;
+    let boyCount = 0;
+    const maxCount = 10;
+
+    function updateSand() {
+      const total = girlCount + boyCount;
+      let percentage = (total / maxCount) * 100;
+      if (percentage > 100) percentage = 100;
+
+      const sand = document.getElementById('sand');
+      sand.style.height = percentage + '%';
+
+      if (percentage === 100) {
+        document.getElementById('message').textContent = 'Seni gerçekten seviyor!';
+        startWaveAnimation();
+      } else {
+        document.getElementById('message').textContent = '';
+        stopWaveAnimation();
+      }
+    }
+
+    function addName(type) {
+      let input;
+      if(type === 'girl') {
+        input = document.getElementById('girlName');
+        if(input.value.trim() !== '') girlCount++;
+      } else {
+        input = document.getElementById('boyName');
+        if(input.value.trim() !== '') boyCount++;
+      }
+      input.value = '';
+      updateSand();
+    }
+
+    function startWaveAnimation() {
+      const sand = document.getElementById('sand');
+      sand.style.animationPlayState = 'running';
+    }
+
+    function stopWaveAnimation() {
+      const sand = document.getElementById('sand');
+      sand.style.animationPlayState = 'paused';
+    }
+
+    stopWaveAnimation();
+  </script>
+</body>
+</html>
