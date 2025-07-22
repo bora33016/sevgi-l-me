@@ -1,84 +1,26 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Sana Kalplerimle</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sevgi Ölçer</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #fff0f5;
-      text-align: center;
-      padding: 50px;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
     }
-
+    .container {
+      background: white;
+      padding: 20px 40px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      width: 400px;
+    }
     h1 {
-      color: #ff1493;
-      font-size: 2.5em;
-    }
-
-    p {
-      font-size: 1.2em;
-    }
-
-    input {
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin-left: 10px;
-      background-color: #ff69b4;
-      border: none;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    #kalp {
-      font-size: 60px;
-      margin-top: 30px;
-      color: red;
-    }
-
-    #sayac {
-      font-size: 40px;
-      color: #d6004f;
-    }
-  </style>
-</head>
-<body>
-
-  <h1>Canımın içi, seni çok seviyorum! ❤️</h1>
-
-  <p>Adını yaz ve kalplerimizi büyüt! 💕</p>
-
-  <input type="text" id="isimInput" placeholder="Adını yaz...">
-  <button onclick="isimKontrol()">Gönder</button>
-
-  <div id="kalp">❤️ x <span id="sayac">0</span></div>
-
-  <script>
-    let sayac = 0;
-    const dogruIsimler = ["Ayşe", "Aşkım", "Balım", "Meleğim"]; // Sevgilinin isimleri burada
-
-    function isimKontrol() {
-      const girilenIsim = document.getElementById("isimInput").value.trim();
-
-      if (dogruIsimler.includes(girilenIsim)) {
-        sayac++;
-      } else {
-        sayac = Math.max(0, sayac - 1);
-      }
-
-      document.getElementById("sayac").textContent = sayac;
-      document.getElementById("isimInput").value = "";
-    }
-  </script>
-
-</body>
-</html>
-
+      text-align
